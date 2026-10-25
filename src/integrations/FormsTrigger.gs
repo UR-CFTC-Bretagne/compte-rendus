@@ -27,7 +27,7 @@ function chargerConfigurationIngestion_() {
     throw new Error('Configuration privée incomplète');
   }
   var fields = JSON.parse(rawMapping);
-  ['titre', 'instance', 'dateReunion', 'synthese'].forEach(function (key) {
+  ['titre', 'instance', 'dateReunion', 'synthese', 'mandatId', 'structureId'].forEach(function (key) {
     if (!Number.isInteger(Number(fields[key]))) throw new Error('Identifiant de question manquant : ' + key);
   });
   return { formId: formId, dataSheetId: dataSheetId, registrySheetId: registrySheetId, fields: fields };
