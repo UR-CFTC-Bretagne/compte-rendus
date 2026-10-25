@@ -26,3 +26,11 @@
 - [ ] Documentation et analyses transversales
 
 Chaque fonctionnalité doit être accompagnée de tests, d’une revue des permissions et de documentation.
+
+## Décision fonctionnelle : Google Forms
+- [ ] Auditer et réutiliser en priorité le formulaire existant `FORM_03_COMPTE_RENDU_INSTANCE`
+- [ ] Cartographier les champs (mandat, instance, réunion, positions CFTC, décisions, actions, confidentialité)
+- [ ] Mettre en place un déclencheur de réception fiable et un traitement idempotent
+- [ ] Associer l’identité réelle du répondant à ses mandats autorisés ; ne pas faire confiance aux champs déclaratifs
+- [ ] Sécuriser les feuilles de réponses et fichiers joints dans Google Workspace
+- [ ] Utiliser Apps Script pour validation, notifications et rapports d’activité ; aucun formulaire HTML parallèle dans le MVP
