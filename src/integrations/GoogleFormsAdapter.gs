@@ -23,6 +23,8 @@ function adapterReponseGoogleForms(formResponse, config) {
     source: 'google_forms',
     formId: String(config.formId),
     responseId: String(formResponse.getId()),
+    mandatId: value('mandatId'),
+    structureId: value('structureId'),
     fields: { titre: value('titre'), instance: value('instance'), dateReunion: value('dateReunion'), synthese: value('synthese') }
   });
 }
