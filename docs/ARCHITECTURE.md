@@ -55,3 +55,9 @@ Les rapports doivent tracer les identifiants des comptes rendus sources et disti
 ## Outillage
 
 GitHub + revue par Pull Request. Prévoir ESLint, Prettier, tests unitaires et d’intégration, compilation compatible Apps Script, `clasp`, GitHub Actions et environnements séparés. Aucun workflow de déploiement n’est actif à ce stade.
+
+## Parcours Google Forms retenu
+
+Le mandaté utilise **Google Forms** pour transmettre son compte rendu. La réponse est reçue par un déclencheur Apps Script installé sur le formulaire ou la feuille liée ; le traitement doit être idempotent (identifiant de réponse stable, gestion des doublons) et ne jamais faire confiance aux identifiants de mandat/structure déclarés dans le formulaire. La correspondance répondant–mandat est vérifiée côté serveur. Les réponses et pièces jointes sont stockées dans des espaces Google Workspace privés, puis soumises au workflow de validation. Le module de rapports d’activité ne consolide que les enregistrements autorisés et validés.
+
+Google Forms ne permet pas nativement un vrai brouillon métier modifiable, une validation hiérarchique ni une gestion fine des droits sur chaque réponse : ces fonctions relèvent des modules Apps Script ou d’un espace coordinateur complémentaire. Vérifier les contraintes de connexion Google et de dépôt de fichiers avant ouverture aux mandatés.
