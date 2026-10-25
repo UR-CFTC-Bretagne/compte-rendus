@@ -15,6 +15,7 @@ function adapterReponseGoogleForms(formResponse, config) {
     var id = f[name];
     if (id === undefined || id === null) throw new Error('Mapping manquant : ' + name);
     var result = values[String(id)];
+    if (result instanceof Date) return Utilities.formatDate(result, 'Europe/Paris', 'yyyy-MM-dd');
     if (Array.isArray(result)) return result.join(', ');
     return result == null ? '' : String(result);
   }
