@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; background:#f6f8fb; color:#183047; margin:0; }
+    main { max-width:720px; margin:3rem auto; padding:1.5rem; background:white; border-radius:12px; box-shadow:0 4px 20px #172e4417; }
+    h1 { color:#005a95; } label { display:block; margin:1rem 0 .4rem; font-weight:600; }
+    input,textarea { box-sizing:border-box; width:100%; border:1px solid #a9b7c2; border-radius:6px; padding:.7rem; font:inherit; }
+    button { margin-top:1.2rem; background:#005a95; color:white; border:0; border-radius:6px; padding:.8rem 1.2rem; cursor:pointer; }
+    output { display:block; margin-top:1rem; white-space:pre-wrap; }
+    .note { padding:.75rem; background:#fff8df; border-left:4px solid #d5a100; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>MANDAT’CR CFTC</h1>
+  <p>Prototype technique — Union Régionale CFTC Bretagne</p>
+  <p class="note">Démonstration de validation : les informations saisies ne sont <strong>pas enregistrées</strong> ni transmises.</p>
+  <form id="form">
+    <label for="titre">Titre</label><input id="titre" maxlength="150" required>
+    <label for="instance">Instance</label><input id="instance" maxlength="150" required>
+    <label for="dateReunion">Date de réunion</label><input id="dateReunion" type="date" required>
+    <label for="synthese">Synthèse</label><textarea id="synthese" maxlength="10000" rows="5" required></textarea>
+    <button type="submit">Vérifier les informations</button>
+  </form>
+  <output id="resultat" role="status" aria-live="polite"></output>
+</main>
+<script>
+  document.getElementById('form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const données = {
+      titre: document.getElementById('titre').value,
+      instance: document.getElementById('instance').value,
+      dateReunion: document.getElementById('dateReunion').value,
+      synthese: document.getElementById('synthese').value
+    };
+    const resultat = document.getElementById('resultat');
+    resultat.textContent = 'Vérification…';
+    google.script.run.withSuccessHandler(function () {
+      resultat.textContent = 'Données valides. Aucun enregistrement effectué.';
+    }).withFailureHandler(function (erreur) {
+      resultat.textContent = 'Erreur : ' + erreur.message;
+    }).verifierCompteRenduExemple(données);
+  });
+</script>
+</body>
+</html>
