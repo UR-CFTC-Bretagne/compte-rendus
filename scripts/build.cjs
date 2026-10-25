@@ -7,6 +7,8 @@ const wanted = [
   'core/Rules.gs',
   'api/CompteRenduContract.gs',
   'integrations/GoogleFormsAdapter.gs',
+  'integrations/FormsTrigger.gs',
+  'repositories/SheetsCompteRenduRepository.gs',
   'modules/comptes-rendus/CompteRenduService.gs',
   'modules/rapports-activite/RapportService.gs',
   'Index.html',
