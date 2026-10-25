@@ -68,3 +68,7 @@ Les noms, signes distinctifs et logos de la CFTC ne sont pas concédés par la l
 ## Contribution
 
 Les propositions pourront être déposées via Issues et Pull Requests. Les règles détaillées de contribution et de mise en production seront ajoutées avec l’outillage CI/CD.
+
+## Saisie par Google Forms
+
+**Décision MVP : les mandatés transmettent leurs comptes rendus au moyen de Google Forms.** L’application Apps Script ne développe pas de formulaire de saisie concurrent : elle assure les déclencheurs de soumission, la normalisation, les contrôles d’autorisation, le classement privé, le workflow et la production de rapports d’activité. Le formulaire existant `FORM_03_COMPTE_RENDU_INSTANCE` sera examiné avant toute création d’un formulaire supplémentaire. Les données des réponses restent dans les espaces Google Workspace autorisés, jamais dans GitHub.
