@@ -1,0 +1,11 @@
+const test=require('node:test');const assert=require('node:assert/strict');const fs=require('node:fs');const vm=require('node:vm');
+const scope={Date,Array,String,Error,Utilities:{formatDate:d=>d.toISOString().slice(0,10)}};vm.createContext(scope);
+vm.runInContext(fs.readFileSync('src/modules/mandats/AutorisationMandat.gs','utf8'),scope);
+const dto={respondentEmail:'Mandate@exemple.fr',mandatId:'M-12',structureId:'UR-BZH',instance:'CARSAT',dateReunion:'2026-10-25'};
+const mandats=[['M-12','UR-BZH','CARSAT','2026-01-01','2026-12-31','ACTIF']];
+const affectations=[['mandate@exemple.fr','M-12','UR-BZH','2026-01-01','2026-12-31','ACTIF']];
+test('autorise la personne habilitée pour le mandat à la date de réunion',()=>assert.equal(scope.autoriserCompteRenduMandat(dto,mandats,affectations),true));
+test('refuse un mandat différent même au sein de la même instance',()=>assert.equal(scope.autoriserCompteRenduMandat({...dto,mandatId:'M-13'},mandats,affectations),false));
+test('refuse une autre structure',()=>assert.equal(scope.autoriserCompteRenduMandat({...dto,structureId:'FED'},mandats,affectations),false));
+test('refuse mandat expiré',()=>assert.equal(scope.autoriserCompteRenduMandat({...dto,dateReunion:'2027-01-01'},mandats,affectations),false));
+test('refuse affectation révoquée',()=>assert.equal(scope.autoriserCompteRenduMandat(dto,mandats,[['mandate@exemple.fr','M-12','UR-BZH','2026-01-01','2026-12-31','INACTIF']]),false));
