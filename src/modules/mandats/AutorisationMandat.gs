@@ -10,7 +10,7 @@ function autoriserCompteRenduMandat(dto, mandats, affectations) {
   var mandatId = String(dto.mandatId || '').trim();
   var structureId = String(dto.structureId || '').trim();
   var instance = String(dto.instance || '').trim();
-  if (!email || !/^\\d{4}-\\d{2}-\\d{2}$/.test(date) || !mandatId || !structureId || !instance) return false;
+  if (!email || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !mandatId || !structureId || !instance) return false;
   function dateIso(value) {
     if (value instanceof Date) return Utilities.formatDate(value, 'Europe/Paris', 'yyyy-MM-dd');
     return String(value || '').trim();
