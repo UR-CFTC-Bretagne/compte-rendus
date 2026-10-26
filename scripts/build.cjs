@@ -10,6 +10,7 @@ const wanted = [
   'integrations/FormsTrigger.gs',
   'repositories/SheetsCompteRenduRepository.gs',
   'modules/comptes-rendus/CompteRenduService.gs',
+  'modules/mandats/AutorisationMandat.gs',
   'modules/rapports-activite/RapportService.gs',
   'Index.html',
   'appsscript.json'

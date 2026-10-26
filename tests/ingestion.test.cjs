@@ -19,12 +19,12 @@ test('rejette un événement sans réponse ni source',()=>{
 });
 test('convertit les dates de Google Forms en ISO',()=>{
   const date = new Date('2026-10-25T12:00:00Z');
-  const values=[[11,'Séance'],[12,'CARSAT'],[13,date],[14,'Synthèse']];
+  const values=[[11,'Séance'],[12,'CARSAT'],[13,date],[14,'Synthèse'],[15,'M-12'],[16,'UR-BZH']];
   const response={getId:()=> 'R123',getItemResponses:()=>values.map(([id,value])=>({
     getItem:()=>({getId:()=>id}),getResponse:()=>value
   }))};
   const dto=context.adapterReponseGoogleForms(response,{formId:'form',fields:{
-    titre:11,instance:12,dateReunion:13,synthese:14
+    titre:11,instance:12,dateReunion:13,synthese:14,mandatId:15,structureId:16
   }});
   assert.equal(dto.dateReunion,'2026-10-25');
 });
